@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Fexbo</title>
+
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsen/css/onsen-css-components-blue-basic-theme.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!--<script src="cordova.js"></script>-->
+    <script src="js/notifications.js"></script>
+    <script src="lib/onsen/js/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script>
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="lib/moment.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+
+<ons-modal var="modal">
+    <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+    <br><br>
+    {{labels.loading}}
+</ons-modal>
+
+<ons-navigator animation="slide" var="mainNavigator" ng-controller="MainNavigatorController">
+
+</ons-navigator>
+
+<ons-template id="login.html">
+    <ons-page ng-controller="Login">
+        <ons-toolbar>
+            <div class="left">
+                <div class="header-top-logo">
+                    <img class="img-logo" src="img/logo.png"/>
+                </div>
+            </div>
+            <div class="center">
+                {{labels.welcome}}
+            </div>
+            <div class="right">
+                <ons-toolbar-button class="lang-button" onclick="updateLanguage('es')">
+                    <img src="img/es.jpg" alt="ES">
+                </ons-toolbar-button>
+                <ons-toolbar-button class="lang-button" onclick="updateLanguage('en')">
+                    <img src="img/en.jpg" alt="EN">
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+
+        <div class="login-form">
+            <div class="header-logo">
+                <img class="img-logo" src="img/logo.png"/>
+            </div>
+            <input id="login_email" type="email" class="text-input--underbar" placeholder="{{labels.email}}" value="viva@gmail.com">
+            <input id="login_password" type="password" class="text-input--underbar" placeholder="{{labels.password}}" value="123456">
+            <br><br>
+            <ons-button id="loginButton" modifier="large" class="login-button" ng-click="login()">{{labels.login}}</ons-button>
+            <br><br>
+            <!--
+            <ons-button id="" modifier="quiet" class="forgot-password">Forgot password?</ons-button>
+            -->
+        </div>
+
+    </ons-page>
+</ons-template>
+
+<ons-template id="meetings.html">
+    <ons-page ng-controller="Meetings">
+        <ons-toolbar>
+            <div class="left">
+                <!--<div class="header-top-logo">
+                    <img class="img-logo" src="img/logo.png"/>
+                </div>-->
+                <ons-toolbar-button>
+                    <ons-icon ng-click="logout()" icon="fa-power-off" fixed-width="false" style="vertical-align: -4px;"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">
+                {{labels.meetings}}
+            </div>
+
+            <div class="right">
+                <ons-toolbar-button class="lang-button" onclick="updateLanguage('es')">
+                    <img src="img/es.jpg" alt="ES">
+                </ons-toolbar-button>
+                <ons-toolbar-button class="lang-button" onclick="updateLanguage('en')">
+                    <img src="img/en.jpg" alt="EN">
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+
+        <div class="navigation-bar">
+            <div class="navigation-bar__center">
+
+                <!-- segment control -->
+                <div class="button-bar" style="width:200px; margin:8px auto 0;">
+                    <div class="button-bar__item" ng-click="filter('today')">
+                        <input type="radio" name="navi-segment-a" checked>
+
+                        <div class="button-bar__button">{{labels.today}}</div>
+                    </div>
+                    <div class="button-bar__item" ng-click="filter('all')">
+                        <input type="radio" name="navi-segment-a">
+
+                        <div class="button-bar__button">{{labels.all}}</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <ons-list class="plan-list">
+            <ons-list-item modifier="chevron" class="plan" ng-repeat="meeting in meetings">
+                <ons-list-header ng-style="{display:meeting.first_expo ? 'block' : 'none'}">
+                    {{meeting.expo}}
+                </ons-list-header>
+                <ons-row ng-click="gotoParticipantDetail($index)">
+                    <ons-col width="80px" class="plan-left">
+                        <div class="plan-date">{{meeting.scheduled_hour}}</div>
+                        <!--<div class="plan-duration" ng-click="filter('all')">{{meeting_duration}}</div>-->
+                    </ons-col>
+
+                    <ons-col width="6px" class="plan-center"
+                             ng-style="{backgroundColor:$index % 3 == 1 ? '#3399ff' : '#ccc'}">
+                    </ons-col>
+
+                    <ons-col class="plan-right">
+                        <div class="plan-name">{{meeting.company}}</div>
+
+                        <div class="plan-info">
+                            <div ng-hide="a % 4 == 0">
+                                <ons-icon icon="fa-phone"></ons-icon>
+                                <span class="ction-list-text">{{meeting.phone}}</span>
+                                <span class="ction-list-text">{{meeting.sure_name}} {{meeting.first_name}}</span>
+                            </div>
+                        </div>
+                    </ons-col>
+                </ons-row>
+            </ons-list-item>
+
+        </ons-list>
+    </ons-page>
+</ons-template>
+
+<ons-template id="participant_detail.html">
+    <ons-page ng-controller="ParticipantDetail">
+        <ons-toolbar>
+            <div class="left"><ons-back-button>{{labels.back}}</ons-back-button></div>
+            <div class="center">{{labels.profile}}</div>
+            <div class="right"></div>
+        </ons-toolbar>
+
+        <div class="profile-card">
+
+            <img src="{{company.profile_image}}" class="profile-image" />
+            <div class="profile-name">{{company.name}}</div>
+            <div class="profile-id">{{participant.email}}</div>
+            <div class="profile-desc">{{company.description}}</div>
+
+        </div>
+
+        <!--
+        <ons-list>
+            <ons-list-item>
+                <ons-row>
+                    <ons-col class="info-col">
+                        <div class="info-num">87</div>
+                        <div class="info-unit">Comments</div>
+                    </ons-col>
+                    <ons-col class="info-col">
+                        <div class="info-num">40</div>
+                        <div class="info-unit">Following</div>
+                    </ons-col>
+                    <ons-col class="info-col">
+                        <div class="info-num">38</div>
+                        <div class="info-unit">Followers</div>
+                    </ons-col>
+                </ons-row>
+            </ons-list-item>
+        </ons-list>
+        -->
+
+        <ons-list modifier="inset" style="margin-top: 10px">
+            <ons-list-item modifier="chevron">
+                <ons-icon icon="fa-phone"></ons-icon><span class="action-list-text">{{labels.call_to}}</span>
+            </ons-list-item>
+
+            <ons-list-item modifier="chevron">
+                <ons-icon icon="fa-inbox"></ons-icon><span class="action-list-text">{{labels.send_email}}</span>
+            </ons-list-item>
+
+        </ons-list>
+
+        <br>
+
+
+    </ons-page>
+</ons-template>
+
+</body>
+</html>
