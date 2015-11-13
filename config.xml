@@ -134,10 +134,7 @@
     </platform>
 
     <access origin="*" browserOnly="true" />
-    <allow-navigation href="*://*/*" />
-    <allow-navigation href="http://*/*" />
-    <allow-navigation href="https://*/*" />
-    <allow-navigation href="data:*" />
+    <allow-navigation href="*" />
     <!--<allow-navigation href="http://m2.vlc360.es/admin/api/login.php" />
     <allow-navigation href="http://m2.vlc360.es/admin/api/submit.php" />-->
 
