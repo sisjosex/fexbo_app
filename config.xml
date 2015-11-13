@@ -20,6 +20,9 @@
         Skylogix
     </author>
 
+    <content src="index.html"/>
+    <access origin="*"/>
+
     <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
@@ -133,7 +136,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 
-    <access origin="*" browserOnly="true" />
+    <access origin="*" />
     <allow-navigation href="http://10.0.0.24:3000/*" />
     <!--<allow-navigation href="http://m2.vlc360.es/admin/api/login.php" />
     <allow-navigation href="http://m2.vlc360.es/admin/api/submit.php" />-->
