@@ -110,6 +110,37 @@
 
     <gap:splash src="splash.png"/>
 
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+        <param name="android-package" value="org.apache.cordova.network-information" />
+    </feature>
+
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+
+    <plugins>
+        <plugin name="InAppBrowser" value="CDVInAppBrowser" />
+    </plugins>
+
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+
+    <access origin="*" browserOnly="true" />
+    <allow-navigation href="*://*/*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
+    <!--<allow-navigation href="http://m2.vlc360.es/admin/api/login.php" />
+    <allow-navigation href="http://m2.vlc360.es/admin/api/submit.php" />-->
+
     <!--
         Define access to external domains.
         <access />            - a blank access tag denies access to all external resources.
@@ -119,9 +150,6 @@
         <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/
         <access origin="http://phonegap.com" browserOnly="true" /> - only allows http://phonegap.com to be opened by the child browser.
     -->
-
-
-    <access origin="*" browserOnly="true"/>
 
     <!--<access origin="*"/>-->
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
