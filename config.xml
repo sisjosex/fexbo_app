@@ -134,7 +134,7 @@
     </platform>
 
     <access origin="*" browserOnly="true" />
-    <allow-navigation href="*" />
+    <allow-navigation href="http://10.0.0.24:3000/*" />
     <!--<allow-navigation href="http://m2.vlc360.es/admin/api/login.php" />
     <allow-navigation href="http://m2.vlc360.es/admin/api/submit.php" />-->
 
