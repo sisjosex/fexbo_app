@@ -3,11 +3,11 @@ var HAVE_NOTIFICATION = '';
 var TYPE_NOTIFICATION = '';
 var EVENT;
 var pushNotificationPlugin;
-var UUID;
+var DEVICE_UUID;
 
 function registerNotifications() {
 
-    UUID = getStoredKey('uuid');
+    DEVICE_UUID = getStoredKey('uuid');
     TOKEN_PUSH_NOTIFICATION = getStoredKey('uuid');
 
     if(window.plugins && window.plugins.pushNotification) {
@@ -121,6 +121,10 @@ function storeToken(uuid, token, device) {
 
     TOKEN_PUSH_NOTIFICATION = token;
     DEVICE_UUID = uuid;
+
+    console.log('========================');
+    console.log(DEVICE_UUID);
+    console.log(TOKEN_PUSH_NOTIFICATION);
 
     getJsonPBackground(api_url + 'updateUUID/', storePushInfoInMobile, onError, {
         user_id: userData.id,
