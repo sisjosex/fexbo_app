@@ -151,6 +151,8 @@ module.controller('Login', function($scope) {
 
         }, 3000);
 
+        verifyNotification();
+
     });
 });
 
