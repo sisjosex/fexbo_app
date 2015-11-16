@@ -52,6 +52,24 @@ var lang = {
     }
 };
 
+document.addEventListener('deviceready', onDeviceReady, false);
+
+function onDeviceReady() {
+
+    document.addEventListener("pause", onPause, false);
+    document.addEventListener("resume", onResume, false);
+
+    registerNotifications();
+}
+
+function onPause() {
+
+}
+
+function onResume() {
+
+}
+
 module.controller('MainNavigatorController', function($scope){
 
     ons.ready(function(){
@@ -313,13 +331,13 @@ function getJsonP(url, callback_success, callback_error, data) {
 
     modal.show();
 
-    url = url + '?format=js'
+    //url = url + '?format=js'
 
     $.ajax({
         type: 'POST',
         url: url,
         data: data,
-        dataType: 'JSONP',
+        dataType: 'JSON',
         timeout: 20000,
         async:true,
         crossDomain: true,
@@ -332,6 +350,38 @@ function getJsonP(url, callback_success, callback_error, data) {
         error: function() {
 
             modal.hide();
+
+            callback_error();
+        }
+    });
+}
+
+function getJsonPBackground(url, callback_success, callback_error, data) {
+
+    if(data === undefined) {
+        data = {};
+    }
+
+
+    if(data.lang === undefined) {
+        data.lang = applicationLanguage;
+    }
+
+    url = url + '?format=js'
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        dataType: 'JSONP',
+        timeout: 20000,
+        async:true,
+        crossDomain: true,
+        success: function(data) {
+
+            callback_success(data);
+        },
+        error: function() {
 
             callback_error();
         }
