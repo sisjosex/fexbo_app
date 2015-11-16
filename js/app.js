@@ -331,13 +331,13 @@ function getJsonP(url, callback_success, callback_error, data) {
 
     modal.show();
 
-    //url = url + '?format=js'
+    url = url + '?format=js'
 
     $.ajax({
         type: 'POST',
         url: url,
         data: data,
-        dataType: 'JSON',
+        dataType: 'JSONP',
         timeout: 20000,
         async:true,
         crossDomain: true,
