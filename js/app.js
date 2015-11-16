@@ -1,4 +1,4 @@
-var API_URL = 'http://172.20.10.5:3000/api/'
+var API_URL = 'http://10.0.0.24:3000/api/'
 var module = ons.bootstrap();
 
 var applicationLanguage = 'es';
@@ -319,7 +319,7 @@ function getJsonP(url, callback_success, callback_error, data) {
         type: 'POST',
         url: url,
         data: data,
-        dataType: 'jsonp',
+        dataType: 'JSONP',
         timeout: 20000,
         async:true,
         success: function(data) {
