@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
-<widget id="com.cadexco.ferias" version="1.0.0 xmlns:gap="http://phonegap.com/ns/1.0" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-<gap:config-file platform="ios" parent="CFBundleShortVersionString">
+<widget id="com.cadexco.ferias"
+        version="1.0.0"
+        xmlns:gap="http://phonegap.com/ns/1.0"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    
+    <gap:config-file platform="ios" parent="CFBundleShortVersionString">
         <string>100</string>
     </gap:config-file>
     <name>Fexbo</name>
