@@ -322,6 +322,7 @@ function getJsonP(url, callback_success, callback_error, data) {
         dataType: 'JSONP',
         timeout: 20000,
         async:true,
+        crossDomain: true,
         success: function(data) {
 
             modal.hide();
