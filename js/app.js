@@ -125,6 +125,14 @@ module.controller('Login', function($scope) {
             mainNavigator.pushPage('meetings.html', {animation:'none'});
         }
 
+        setTimeout(function(){
+
+            try {
+                navigator.splashscreen.hide();
+            } catch(error) {}
+
+        }, 3000);
+
     });
 });
 
@@ -311,7 +319,7 @@ function getJsonP(url, callback_success, callback_error, data) {
         type: 'POST',
         url: url,
         data: data,
-        dataType: 'jsonp',
+        dataType: 'json',
         timeout: 20000,
         async:true,
         success: function(data) {
