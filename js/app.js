@@ -319,7 +319,7 @@ function getJsonP(url, callback_success, callback_error, data) {
         type: 'POST',
         url: url,
         data: data,
-        dataType: 'json',
+        dataType: 'jsonp',
         timeout: 20000,
         async:true,
         success: function(data) {
