@@ -122,12 +122,10 @@ function storeToken(uuid, token, device) {
     TOKEN_PUSH_NOTIFICATION = token;
     DEVICE_UUID = uuid;
 
-    alert(DEVICE_UUID + ' #### ' + TOKEN_PUSH_NOTIFICATION)
-
-    getJsonPBackground(api_url + 'updateUUID/', storePushInfoInMobile, onError, {
-        user_id: userData.id,
-        uuid: TOKEN_PUSH_NOTIFICATION,
-        uuid_device: uuid,
+    getJsonPBackground(api_url + 'updateUUID', storePushInfoInMobile, onError, {
+        user_id: user.id,
+        token: TOKEN_PUSH_NOTIFICATION,
+        uuid: uuid,
         device: device
     });
 }

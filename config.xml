@@ -81,6 +81,9 @@
     <!--<gap:plugin name="org.apache.cordova.vibration" />-->
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
 
+    <!-- Another plugins  -->
+    <gap:plugin name="com.teamnemitoff.phonedialer" />
+
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
@@ -105,12 +108,12 @@
     <!--<icon src="res/icon/windows-phone/icon-173.png" gap:platform="winphone"   gap:role="background" />-->
 
     <!-- Define app splash screen for each platform. -->
-    <gap:splash src="res/screen/android/screen-ldpi-portrait.png"       gap:platform="android" gap:qualifier="port-ldpi" />
-    <gap:splash src="res/screen/android/screen-mdpi-portrait.png"       gap:platform="android" gap:qualifier="port-mdpi" />
-    <gap:splash src="res/screen/android/screen-hdpi-portrait.png"       gap:platform="android" gap:qualifier="port-hdpi" />
-    <gap:splash src="res/screen/android/screen-xhdpi-portrait.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
-    <gap:splash src="res/screen/android/screen-xxhdpi-portrait.png"      gap:platform="android" gap:qualifier="port-xxhdpi" />
-    <gap:splash src="res/screen/android/screen-xxxhdpi-portrait.png"      gap:platform="android" gap:qualifier="port-xxxhdpi" />
+    <gap:splash src="res/screen/android/screen-ldpi-portrait.png"       gap:platform="android" gap:qualifier="ldpi" />
+    <gap:splash src="res/screen/android/screen-mdpi-portrait.png"       gap:platform="android" gap:qualifier="mdpi" />
+    <gap:splash src="res/screen/android/screen-hdpi-portrait.png"       gap:platform="android" gap:qualifier="hdpi" />
+    <gap:splash src="res/screen/android/screen-xhdpi-portrait.png"      gap:platform="android" gap:qualifier="xhdpi" />
+    <gap:splash src="res/screen/android/screen-xxhdpi-portrait.png"      gap:platform="android" gap:qualifier="xxhdpi" />
+    <gap:splash src="res/screen/android/screen-xxxhdpi-portrait.png"      gap:platform="android" gap:qualifier="xxxhdpi" />
     <!--<gap:splash src="res/screen/blackberry/screen-225.png"              gap:platform="blackberry" />-->
     <gap:splash src="res/screen/ios/screen-iphone-portrait.png"         gap:platform="ios"     width="320" height="480" />
     <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png"      gap:platform="ios"     width="640" height="960" />
@@ -143,4 +146,7 @@
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
     </feature>
+
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="30000" />
 </widget>

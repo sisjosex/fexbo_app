@@ -26,7 +26,8 @@ var lang = {
         profile: 'Profile',
         back: 'Back',
         call_to: 'Call',
-        send_email: 'Send email'
+        send_email: 'Send email',
+        confirm_exit: 'Confirm exit app?'
     },
     es: {
         yes: 'Si',
@@ -48,7 +49,8 @@ var lang = {
         profile: 'Perfil',
         back: 'Atras',
         call_to: 'Llamar',
-        send_email: 'Enviar email'
+        send_email: 'Enviar email',
+        confirm_exit: 'Esta seguro que desea salir de la aplicación?'
     }
 };
 
@@ -59,6 +61,8 @@ function onDeviceReady() {
     document.addEventListener("pause", onPause, false);
     document.addEventListener("resume", onResume, false);
 
+    document.addEventListener('backbutton', onPressBack);
+
     registerNotifications();
 }
 
@@ -67,6 +71,57 @@ function onPause() {
 }
 
 function onResume() {
+
+}
+
+var showing_exit = false;
+function onPressBack(e) {
+
+    e.preventDefault();
+
+    if (mainNavigator.getCurrentPage().page == 'meetings.html') {
+        scopeMeetings = undefined;
+    }
+
+    if (!showing_exit && (mainNavigator.getCurrentPage().page == 'login.html') )  {
+        /*
+        confirm(t('confirm_exit'), function (index) {
+            if (index == 0) {
+                navigator.app.exitApp();
+            }
+            showing_exit = false;
+        });
+        */
+
+        /*navigator.notification.confirm(
+            t("confirm_exit"), // message
+            alertexit, // callback
+            t('confirmation'), // title
+            t('yes') + ',' + t('no') // buttonName
+        );*/
+
+        //device.exitApp();
+        navigator.app.exitApp();
+
+        //showing_exit = true;
+
+        /*setTimeout(function(){
+            showing_exit = false;
+        }, 5000);*/
+    }
+
+    return false;
+}
+
+function alertexit(button){
+
+    showing_exit = false;
+
+    if(button=="1" || button==1)
+    {
+
+        device.exitApp();
+    }
 
 }
 
@@ -235,6 +290,14 @@ module.controller('ParticipantDetail', function($scope){
         participant_id = meeting.participant_id;
 
         $scope.labels = lang[applicationLanguage];
+
+        $scope.callToPhoneAction = function(phone) {
+            callToPhone(phone);
+        };
+
+        $scope.openEmailAction = function(email) {
+            openEmail(email);
+        };
 
         getJsonP(API_URL + 'getParticipantDetail',
             function(response) {
@@ -450,3 +513,25 @@ function t(label) {
         return lang[applicationLanguage][label]
     }
 }
+
+
+function openEmail(email) {
+
+    window.open('mailto:' + email + '?subject=Contacto&body=');
+}
+
+function callToPhone(phone) {
+
+    phonedialer.dial(
+        phone,
+        function(err) {
+            if (err == "empty") {
+                alert(t("unknow_phone"));
+            }
+            else alert(t("dialer_error") + err);
+        },
+        function(success) {
+            //alert('Dialing succeeded');
+        }
+    );
+};

@@ -192,11 +192,11 @@
         -->
 
         <ons-list modifier="inset" style="margin-top: 10px">
-            <ons-list-item modifier="chevron">
+            <ons-list-item modifier="chevron" ng-click="callToPhoneAction(company.phone)">
                 <ons-icon icon="fa-phone"></ons-icon><span class="action-list-text">{{labels.call_to}}</span>
             </ons-list-item>
 
-            <ons-list-item modifier="chevron">
+            <ons-list-item modifier="chevron" ng-click="openEmailAction(participant.email)">
                 <ons-icon icon="fa-inbox"></ons-icon><span class="action-list-text">{{labels.send_email}}</span>
             </ons-list-item>
 

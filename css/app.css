@@ -176,3 +176,7 @@ input[type=email], input[type=password] {
     display:inline-block;
     padding-left:10px;
 }
+
+.profile-card {
+    min-height: 180px;
+}
